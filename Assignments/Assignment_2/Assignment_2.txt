@@ -1,0 +1,31 @@
+1. 
+cd Desktop/Data_Course/Data/data-shell/data/pdb 
+wc -l m*
+
+2. 
+wc -l m* > m_lines.txt
+cd ../../../../../
+cd Data_Course_STANLEY
+mkdir ./Assignments
+cd Assignments
+mkdir ./Assignment_2
+I went back to Desktop/Data_Course/Data/data-shell/data/pdb
+
+mv m_lines.txt -t ~/Desktop/Data_Course_STANLEY/Assignments/Assignment_2/
+
+3. 
+cut -d "," animals.txt -f2 | sort -u > unique_animals.txt | mv unique_animals.txt ~/Desktop/Data_Course_STANLEY/Assignments/Assignment_2/
+
+4. 
+cut -d "," BioLog_Plate_Data.csv -f5 | sort -u > unique_C-substrates.txt | mv unique_C-substrates.txt ~/Desktop/Data_Course_STANLEY/Assignments/Assignment_2/
+
+5.
+wc -l *.txt | sort -nr
+this just sorts them from most amound of lines to the fewest but I found out that sunspot.txt has the most amount of lines at 3080
+
+6.
+
+
+
+
+
