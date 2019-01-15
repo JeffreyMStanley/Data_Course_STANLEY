@@ -20,10 +20,14 @@ cut -d "," animals.txt -f2 | sort -u > unique_animals.txt | mv unique_animals.tx
 cut -d "," BioLog_Plate_Data.csv -f5 | sort -u > unique_C-substrates.txt | mv unique_C-substrates.txt ~/Desktop/Data_Course_STANLEY/Assignments/Assignment_2/
 
 5.
-wc -l *.txt | sort -nr
-this just sorts them from most amound of lines to the fewest but I found out that sunspot.txt has the most amount of lines at 3080
+wc -l *.txt | sort -nr | head -2 |tail -1
 
-6.
+
+6. 
+-exec wouldnt work so you helped me with a work around
+$ while read line; do bash ../../../Data_Course/Data/data-shell/sc file_sums.txt  files.txt
+$ while read line; do bash ../../../Data_Course/Data/data-shell/sc
+
 
 
 
