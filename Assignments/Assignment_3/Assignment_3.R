@@ -16,7 +16,7 @@ vector1*vector2
 
 
 
-setwd("~/Desktop/GIT_REPOSITORIES/Data_Course/data/")
+setwd("../")
 list.files()
 
 dat = read.csv("thatch_ant.csv")
@@ -69,7 +69,7 @@ dev.off()
 
 # back to our ant data...
 dat$Headwidth
-levels(dat$Headwidth) # levels gives all the "options" of a factor you feed it
+levels(dat$Headwidth)# levels gives all the "options" of a factor you feed it
 
 # I notice a couple weird ones in there: "" and "41mm"
 # The "" means a missing value, basically. The "41mm" sure looks like a data entry error.
@@ -77,13 +77,14 @@ levels(dat$Headwidth) # levels gives all the "options" of a factor you feed it
 
 # FIND WHICH ONES HAVE "41mm"
 
-
-
+dat$Headwidth == "41mm"
+which(dat$Headwidth == "41mm")
 # CONVERT THOSE TO "41.000"
 
-
+dat[which(dat$Headwidth == "41mm"), "Headwidth"] <- "41.000"
 
 # DO THE SAME FOR "", BUT CONVERT THOSE TO "NA"
+dat[which(dat$Headwidth == ""), "Headwidth"] <- NA
 
 
 
@@ -92,7 +93,7 @@ na.omit(dat)
 
 
 # NOW, CONVERT THAT PESKY "Headwidth" COLUMN INTO A NUMERIC VECTOR WITHIN "dat"
-
+dat$Headwidth = as.numeric(dat$Headwidth)
 
 
 # LET'S LEARN HOW TO MAKE A DATA FRAME FROM SCRATCH... WE JUST FEED IT VECTORS WITH NAMES!
@@ -111,10 +112,13 @@ df1 # look at it...note column names are what we gave it.
 
 # Make a data frame from the first 20 rows of the ant data that only has "Colony" and "Mass"
 # save it into an object called "dat3"
+col1 = c(dat$Colony)
+col2 = c(dat$Mass)
+data.frame(Colony=col1, Mass=col2)
+?data.frame
+dat2=data.frame(Colony=col1, Mass=col2)
 
-
-
-
+dat3=head(dat2, 20)
 
 ###### WRITING OUT FILES FROM R #######
 ?write.csv()
@@ -136,6 +140,7 @@ for(i in 1:10){
 for(i in levels(dat$Size.class)){
   print(i)
 }
+
 
 # can calculate something for each value of i ...can use to subset to groups of interest
 for(i in levels(dat$Size.class)){
@@ -172,16 +177,33 @@ size_class_mean_mass = data.frame(...)
 ############ YOUR HOMEWORK ASSIGNMENT ##############
 
 # 1.  Make a scatterplot of headwidth vs mass. See if you can get the points to be colored by "Colony"
+plot(dat$Headwidth ~ dat$Mass, col =dat$Colony)
 
 
 # 2.  Write the code to save it (with meaningful labels) as a jpeg file
+x=dat$Headwidth
+y=dat$Mass
 
 
+jpeg("Headwidth_vs_Mass.jpeg", width=350,height=350)
+plot(x,y, main = "Headwidth vs Mass", xlab = "Headwidth", ylab = "mass")
+
+dev.off()
 # 3.  Subset the thatch ant data set to only include ants from colony 1 and colony 2
+dat$Colony= as.factor(dat$Colony)
+levels(dat$Colony)
+class(dat$Colony)
+
+dat[]
+
+cols1or2 = dat$Colony %in% c(1,2)
+dat1or2 = dat[cols1or2,]
 
 
 # 4.  Write code to save this new subset as a .csv file
 
+write.csv(dat1or2,"thatch_ant_1_2.csv")
+list.files()
 
 # 5.  Upload this R script (with all answers filled in and tasks completed) to canvas
       # I should be able to run your R script and get all the plots created and saved, etc.
