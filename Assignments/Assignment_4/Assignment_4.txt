@@ -1,0 +1,13 @@
+1. It eliminates 
+2. read.csv2() does the same thing but separates them by simicolins instead
+3. read.csv2() exists because in European countries use , as decimals so csv2 separates things basked on ;
+
+4. df = read.csv("landdata-states.csv", as.is = c("State"))
+
+5. summary(df$Home.Value)
+6. Home.Value
+7. the points are colored by region.
+
+
+
+ 
