@@ -35,12 +35,12 @@ dev.off()
 ?mean()
 df$Year_Collected
 
-col1 = [df$Year_Collected == 2000
-col2 = (df$DNA_Concentration_Katy 
+col1 = df$Year_Collected == 2000
+col2 = (df$DNA_Concentration_Katy) 
 cbind(col1, col2)
 df2=which(df$Year_Collected == "2000")
 data.frame(df$Year_Collected == 2000, df$DNA_Concentration_Katy)
 plot(x=df2, y=df$DNA_Concentration_Katy)
   
-library(tidyverse)
-?tidyverse
+col2000= c(df$Year_Collected == 2000)
+hist(df$Year_Collected == 2000)
