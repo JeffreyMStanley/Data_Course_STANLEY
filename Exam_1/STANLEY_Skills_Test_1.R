@@ -44,3 +44,6 @@ plot(x=df2, y=df$DNA_Concentration_Katy)
   
 col2000= c(df$Year_Collected == 2000)
 hist(df$Year_Collected == 2000)
+
+plot(x=df$DNA_Concentration_Katy, y=df$DNA_Concentration_Ben, col=df$Year_Collected)
+library(ggplot2)
