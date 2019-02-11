@@ -35,6 +35,28 @@ dev.off()
 ?mean()
 df$Year_Collected
 
+
+difference = c()
+x=1
+for(year in levels(df$Year_Collected)){
+  ben = (mean(df[df$Year_Collected == year,"DNA_Concentration_Ben"]))
+  katy = (mean(df[df$Year_Collected == year,"DNA_Concentration_Katy"]))
+  difference[x] = (ben-katy)
+x=x+1
+  }
+
+minyear = which(difference == min(difference))
+levels(df$Year_Collected)[minyear]
+
+
+library(tidyverse)
+
+df2 = df %>%
+  group_by(Year_Collected) %>%
+  summarise(Mean_ben = mean(DNA_Concentration_Ben), Mean_katy = mean(DNA_Concentration_Katy))
+df2$Mean_ben-df2$Mean_katy
+
+
 col1 = df$Year_Collected == 2000
 col2 = (df$DNA_Concentration_Katy) 
 cbind(col1, col2)
