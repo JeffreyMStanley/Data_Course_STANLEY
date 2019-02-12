@@ -49,14 +49,14 @@ minyear = which(difference == min(difference))
 levels(df$Year_Collected)[minyear]
 
 
+#nice way to do it
 library(tidyverse)
-
 df2 = df %>%
   group_by(Year_Collected) %>%
   summarise(Mean_ben = mean(DNA_Concentration_Ben), Mean_katy = mean(DNA_Concentration_Katy))
 df2$Mean_ben-df2$Mean_katy
 
-
+#junk that did not work
 col1 = df$Year_Collected == 2000
 col2 = (df$DNA_Concentration_Katy) 
 cbind(col1, col2)
@@ -69,3 +69,15 @@ hist(df$Year_Collected == 2000)
 
 plot(x=df$DNA_Concentration_Katy, y=df$DNA_Concentration_Ben, col=df$Year_Collected)
 library(ggplot2)
+
+# V
+df3=df[,c("Year_Collected", "DNA_Concentration_Ben")]
+remove(df3)
+#nice way to do V tidyverse %>% is a pipe 
+df3=df%>%
+  group_by(Year_Collected) %>%
+  summarise(Mean_ben = mean(DNA_Concentration_Ben), SDBen = sd(DNA_Concentration_Ben))
+
+
+
+
