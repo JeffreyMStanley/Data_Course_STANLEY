@@ -1,0 +1,10 @@
+# 1.  Which religious group correlates most strongly in a given area with the proportion of non-religious people?
+     LDS
+# 2.  What is the direction of that correlation?
+    negative coralation 
+# 3.  Which religious group has the second stronglest correlation, as above?
+     Episcopal 
+# 4.  What is the direction of THAT correlation?
+    positive
+# 5.  What can you say about these relationships?
+    that as the proportion of LDS poeple goes down the proportion of Non religious, people go up. as the proportion of episcopal people goes up the proportion of non religious people go up
