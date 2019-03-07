@@ -16,3 +16,21 @@ ages1 = substr(long$AgeGroup,start = 1, stop = 2)
 ages2 = substr(long$AgeGroup,start = 3, stop = 4)
 ages = paste0(ages1, "-", ages2)
 long$AgeGroup = ages
+
+
+# when the tables are next to each other
+df_m = df %>% 
+  select(c(1:5))
+
+df_f = df %>%
+  select(c(10:14))
+
+df_m = df_m %>%
+  gather(Group, Value, c(2:5))
+
+df_f = df_f %>%
+  gather(Group, Value, c(2:5))
+
+df_long = full_join(df_m , df_f)
+
+df_long$Year.1 = NULL
