@@ -1,0 +1,42 @@
+
+Call:
+lm(formula = Diversity ~ Precip + CO2_Concentration, data = at)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-494.9 -103.4  -37.5   78.1  969.6 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       -2123.333    543.664  -3.906 0.000117 ***
+Precip              207.847      4.306  48.267  < 2e-16 ***
+CO2_Concentration     5.901      1.441   4.094 5.49e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 205.1 on 295 degrees of freedom
+Multiple R-squared:  0.9122,	Adjusted R-squared:  0.9116 
+F-statistic:  1532 on 2 and 295 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = Diversity ~ Precip + CO2_Concentration + Aerosol_Density, 
+    data = at)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-470.05  -98.06   -1.72   94.98  805.82 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       -7374.8295   618.0739  -11.93   <2e-16 ***
+Precip              153.6672     5.6621   27.14   <2e-16 ***
+CO2_Concentration    19.2250     1.6049   11.98   <2e-16 ***
+Aerosol_Density       1.2235     0.1003   12.20   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 167.4 on 294 degrees of freedom
+Multiple R-squared:  0.9417,	Adjusted R-squared:  0.9411 
+F-statistic:  1583 on 3 and 294 DF,  p-value: < 2.2e-16
+
