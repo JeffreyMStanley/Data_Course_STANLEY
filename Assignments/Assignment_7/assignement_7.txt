@@ -1,0 +1,5 @@
+assignment 7
+1. yes there are predicted values that are scientifically meaningless because 
+2. yes I found non-linear relaships 
+http://rstudio-pubs-static.s3.amazonaws.com/7812_5327615eb0044cf29420b955ddaa6173.html
+or you can use loess liked we talked about in class
