@@ -75,6 +75,9 @@ hyp = read.csv("./hyp_data.csv")
 hyp = add_predictions(hyp, mod1, var = "pred1")
 
 hyp = add_predictions(hyp, mod2, var = "pred2")
+# from class
+pred.hyp1 = predict(mod1, newdata = hyp)
+pred.hyp2 = predict(mod2, newdata = hyp)
 
 # 7.  Export a text file that contains the summary output from *both* your models to "model_summaries.txt" (10 points)
 
@@ -89,5 +92,12 @@ capture.output(s1,s2, file = "model_summaries.txt")
 
 ggplot(at, aes(x = Precip)) +
   geom_point(aes(y = hyp$pred1))
+
+# a better way from class
+p1 = ggplot(atm, aes(x = Precip, y = Diversity)) +
+     geom_point()
+
+p1 + geom_point(aes(y = pred1), color = "Red) +
+    geom_point(aes(y = pred2), color = "Green")
 
 

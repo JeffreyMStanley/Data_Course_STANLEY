@@ -1,0 +1,76 @@
+---
+title: "Untitled"
+author: "Stanley"
+date: "March 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#this is an awesome way to make plots 
+
+```{r echo=FALSE}
+# Data
+a <- data.frame( x=rnorm(20000, 10, 1.9), y=rnorm(20000, 10, 1.2) )
+b <- data.frame( x=rnorm(20000, 14.5, 1.9), y=rnorm(20000, 14.5, 1.9) )
+c <- data.frame( x=rnorm(20000, 9.5, 1.9), y=rnorm(20000, 15.5, 1.9) )
+data <- rbind(a,b,c)
+```
+```{r}
+# Basic scatterplot
+ggplot(data, aes(x=x, y=y) ) +
+  geom_point()
+
+# Density plot, instead
+ggplot(data, aes(x=x, y=y) ) +
+  geom_bin2d() +
+  theme_bw()
+
+# Number of bins in each direction?
+ggplot(data, aes(x=x, y=y) ) +
+  geom_bin2d(bins = 70) +
+  theme_bw()
+```
+
+
+```{r}
+###############################
+
+# Correlation plot
+# Data example
+data=mtcars[ , c(1,3:6)]
+
+#Make the plot
+plot(data , pch=20 , cex=1.5 , col=rgb(0.5, 0.8, 0.9, 0.7))
+
+
+# fancier version with "car" package
+library(car)
+library(RColorBrewer)
+
+data=mtcars
+
+# Make the plot
+my_colors <- brewer.pal(nlevels(as.factor(data$cyl)), "Set2")
+scatterplotMatrix(~mpg+disp+drat|cyl, data=data , reg.line="" , 
+                  smoother="", col=my_colors , smoother.args=list(col="grey"), 
+                  cex=1.5 , pch=c(15,16,17) , main="Scatter plot with Three Cylinder Options")
+```
+
+
+
+###############################
+# Density plot...for when a histogram is too blah.
+```{r}
+ggplot(data, aes(x=mpg,fill=factor(am))) +
+  geom_density(alpha=.5)
+
+```
+
+
+
+
+
+
