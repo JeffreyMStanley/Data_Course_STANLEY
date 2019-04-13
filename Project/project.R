@@ -52,10 +52,14 @@ msaPrettyPrint(x = test.A2, output = "pdf", file = "test.A2.pdf")
 # testing trees in phangorn, conver with msaConver
 test.A2phy = msaConvert(test.A2, "phangorn::phyDat")
 
+
 ###
 # testing GenomicRanges with just ball and boa to try to find Cytochrome Oxidase I (COI)
-
-
+boaCOI = read.fasta("./Project_Data/COI/COI_Boa_c.fasta")
+un.t = union(boaCOI, boa)
+un.t
+un.t2 = intersect(boaCOI, boa)
+?`GenomicRanges-comparison`
 #####
 
 # the first to lines together the 3rth like is just to get it to load back up
@@ -67,7 +71,36 @@ print(alignment, show = "complete") #to view the full alignment just so I know i
 #####
 
 # bulding a Tree https://cran.r-project.org/web/packages/phangorn/vignettes/Trees.pdf
-pml(test.A2)
+alignment2 = msaConvert(alignment, "phangorn::phyDat")
+dm = dist.ml(alignment2)
+treeNJ = NJ(dm)
+
+layout(matrix(c(1,2),2,1), height=c(1,2))
+par(mar = c(0,0,2,0) + 0.1)
+plot(treeNJ, "unrooted", main = "NJ")
+
+fit = pml(treeNJ, data = alignment2)
+methods(class="pml")
+fitJC  <- optim.pml(fit, TRUE)
+logLik(fitJC) 
+mt = modelTest(alignment2)
+bs = bootstrap.pml(fitJC, bs = 100, optNni = TRUE)
+saveRDS(bs,"full_tree.RDS") #eddit the tree from this in ggtree. 
+bs = readRDS("full_tree.RDS")
+
+#ploting the tree
+png("./mltree.png")
+
+par(mfrow=c(2,1))
+par(mar=c(1,1,3,1))
+plotBS(midpoint(fitJC$tree), bs, p=50, type="p")
+title("a)")
+cnet = consensusNet(bs, p = 0.2)
+plot(cnet, "2D", show.edg.label=TRUE)
+title("b)")
+
+dev.off()
+######
 
 # steps for barcoding
 # 1. for barcoding I need to get the cytochrom oxidase 1 sequence for ever sample and find where it is
@@ -83,3 +116,4 @@ pml(test.A2)
 ?phangorn
 ?Trees
 ?pml
+?ggtree
