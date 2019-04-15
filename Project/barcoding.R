@@ -21,14 +21,13 @@ amp = readDNAStringSet("./Project_Data/Amphisbaena_s_v_mt.fasta")
 ampCOI = readDNAStringSet("./Project_Data/COI/COI_Amphisbaena_s.fasta")
 
 arc = readDNAStringSet("./Project_Data/Archochordus_g_mt.fasta")
-arcCOI = readDNAStringSet("./Project_Data/Archochordus_g_mt.fasta")
+arcCOI = readDNAStringSet("./Project_Data/COI/COI_Acrochordus_g.fasta")
 
 boa = readDNAStringSet("./Project_Data/Boa_c_mt.fasta")
 boaCOI = readDNAStringSet("./Project_Data/COI/COI_Boa_c.fasta")
 
 cyl = readDNAStringSet("Project_Data/Cylindrophis_r_mt.fasta")
-cylCOI = readDNAStringSet("./Project_Data/Cylindrophis_r_mt.fasta")
-
+cylCOI = readDNAStringSet("./Project_Data/COI/COI_Cylindrophis_r.fasta")
 
 did = readDNAStringSet("./Project_Data/Didodon_s_mt.fasta")
 didCOI = readDNAStringSet("./Project_Data/COI/COI_Dinodon_s.fasta")
@@ -76,7 +75,7 @@ cylaln = Biostrings::pairwiseAlignment(cylCOI, cyl, type = "local")
 
 didaln = Biostrings::pairwiseAlignment(didCOI, did, type = "local")
 
-enhCOI = Biostrings::pairwiseAlignment(enhCOI, enh, type = "local")
+enhaln = Biostrings::pairwiseAlignment(enhCOI, enh, type = "local")
 
 igualn = Biostrings::pairwiseAlignment(iguCOI, igu, type = "local")
 
@@ -92,16 +91,97 @@ pytaln = Biostrings::pairwiseAlignment(pytCOI, pyt, type = "local")
 
 ramaln = Biostrings::pairwiseAlignment(ramCOI, ram, type = "local")
 
-renalan = Biostrings::pairwiseAlignment(renaCOI, rena, type = "local")
+renaln = Biostrings::pairwiseAlignment(renaCOI, rena, type = "local")
 
 xenaln = Biostrings::pairwiseAlignment(xenCOI, xen, type = "local")
 ######
 # http://bioconductor.org/packages/release/bioc/vignettes/Biostrings/inst/doc/PairwiseAlignments.pdf
 # aligned(pattern())
 # views gets stard end and width
+ext.agk = alignedPattern(agkaln)
+view.agk = Views(agkaln)
+saveRDS(ext.agk, "./Project_Data/ext_COI/ext_agk.RDS")
+saveRDS(view.agk, "./Project_Data/ext_COI/views/view_agk.RDS")
 
-test1 = alignedPattern(boaaln)
-test2 = Views(boaaln)
+ext.amp = alignedPattern(ampanl)
+view.amp = Views(ampanl)
+saveRDS(ext.amp, "./Project_Data/ext_COI/ext_amp.RDS")
+saveRDS(view.amp, "./Project_Data/ext_COI/views/view_amp.RDS")
 
-alignedPattern(agkaln)
-Views(agkaln)
+ext.arc = alignedPattern(arcaln)
+view.arc = Views(arcaln)
+saveRDS(ext.arc,"./Project_Data/ext_COI/ext_arc.RDS")
+saveRDS(view.arc, "./Project_Data/ext_COI/views/view_arc.RDS")
+
+ext.boa = alignedPattern(boaaln)
+view.boa= Views(boaaln)
+saveRDS(ext.boa,"./Project_Data/ext_COI/ext_boa.RDS")
+saveRDS(view.boa, "./Project_Data/ext_COI/views/view_boa.RDS")
+
+ext.cyl = alignedPattern(cylaln)
+view.cyl = Views(cylaln)
+saveRDS(ext.cyl,"./Project_Data/ext_COI/ext_cyl.RDS")
+saveRDS(view.cyl, "./Project_Data/ext_COI/views/view_cyl.RDS")
+
+ext.did = alignedPattern(didaln)
+view.did = Views(didaln)
+saveRDS(ext.did,"./Project_Data/ext_COI/ext_did.RDS")
+saveRDS(view.did, "./Project_Data/ext_COI/views/view_did.RDS")
+
+ext.enh = alignedPattern(enhaln)
+view.enh = Views(enhaln)
+saveRDS(ext.enh,"./Project_Data/ext_COI/ext_enh.RDS")
+saveRDS(view.enh, "./Project_Data/ext_COI/views/view_enh.RDS")
+
+ext.igu = alignedPattern(igualn)
+view.igu = Views(igualn)
+saveRDS(ext.igu,"./Project_Data/ext_COI/ext_igu.RDS")
+saveRDS(view.igu, "./Project_Data/ext_COI/views/view_igu.RDS")
+
+ext.naja = alignedPattern(najaaln)
+view.naja = Views(najaaln)
+saveRDS(ext.naja,"./Project_Data/ext_COI/ext_naja.RDS")
+saveRDS(view.naja, "./Project_Data/ext_COI/views/view_naja.RDS")
+
+ext.ovo = alignedPattern(ovoaln)
+view.ovo = Views(ovoaln)
+saveRDS(ext.ovo,"./Project_Data/ext_COI/ext_ovo.RDS")
+saveRDS(view.ovo, "./Project_Data/ext_COI/views/view_ovo.RDS")
+
+ext.pan = alignedPattern(panaln)
+view.pan = Views(panaln)
+saveRDS(ext.pan,"./Project_Data/ext_COI/ext_pan.RDS")
+saveRDS(view.pan, "./Project_Data/ext_COI/views/view_pan.RDS")
+
+ext.ple = alignedPattern(plealn)
+view.ple = Views(plealn)
+saveRDS(ext.ple,"./Project_Data/ext_COI/ext_ple.RDS")
+saveRDS(view.ple, "./Project_Data/ext_COI/views/view_ple.RDS")
+
+ext.pyt = alignedPattern(pytaln)
+view.pyt = Views(pytaln)
+saveRDS(ext.pyt,"./Project_Data/ext_COI/ext_pyt.RDS")
+saveRDS(view.pyt, "./Project_Data/ext_COI/views/view_pyt.RDS")
+
+ext.ram = alignedPattern(ramaln)
+view.ram = Views(ramaln)
+saveRDS(ext.ram,"./Project_Data/ext_COI/ext_ram.RDS")
+saveRDS(view.ram, "./Project_Data/ext_COI/views/view_ram.RDS")
+
+ext.ren = alignedPattern(renaln)
+view.ren = Views(renaln)
+saveRDS(ext.ren,"./Project_Data/ext_COI/ext_ren.RDS")
+saveRDS(view.ren, "./Project_Data/ext_COI/views/view_ren.RDS")
+
+ext.xen = alignedPattern(xenaln)
+view.xen = Views(xenaln)
+saveRDS(ext.xen,"./Project_Data/ext_COI/ext_xen.RDS")
+saveRDS(view.xen, "./Project_Data/ext_COI/views/view_xen.RDS")
+########
+
+#alignment
+all.COI = c(ext.agk,ext.amp,ext.arc,ext.boa,ext.cyl,ext.did,ext.enh,ext.igu,ext.naja,ext.ovo,ext.pan
+            ,ext.ple,ext.pyt,ext.ram,ext.ren,ext.xen)
+saveRDS(all.COI, "./Project_Data/ext_COI/all_COI.RDS")
+all.COI = readRDS("./Project_Data/ext_COI/all_COI.RDS")
+print(all.COI, show = "complete")

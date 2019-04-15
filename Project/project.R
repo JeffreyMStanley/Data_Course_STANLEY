@@ -22,9 +22,9 @@ boa2 = readDNAStringSet("./Project_Data/Boa_c_mt.fasta")
 ball2 = readDNAStringSet("./Project_Data/Python_r_mt.fasta")
 #######
 
-# loeading in files for an alignment with all of the files in the data foler
+# loeading in files for an alignment with all of the files in the data foler ##############
 files <- list.files("./Project_Data/", pattern = "*.fasta$", full.names = TRUE)
-test.sec2 = readDNAStringSet(files)
+test.sec2 = readDNAStringSet(files) ##############################
 ######
 
 
@@ -62,12 +62,12 @@ un.t2 = intersect(boaCOI, boa)
 ?`GenomicRanges-comparison`
 #####
 
-# the first to lines together the 3rth like is just to get it to load back up
+# the first to lines together the 3rth like is just to get it to load back up ############
 alignment = msa(test.sec2, "ClustalW")
 saveRDS(alignment, "./alignment.RDS")
 alignment
 alignment = readRDS("./alignment.RDS")
-print(alignment, show = "complete") #to view the full alignment just so I know it worked
+print(alignment, show = "complete") #to view the full alignment just so I know it worked ################
 #####
 
 # bulding a Tree https://cran.r-project.org/web/packages/phangorn/vignettes/Trees.pdf
