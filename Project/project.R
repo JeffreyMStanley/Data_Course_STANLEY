@@ -10,60 +10,14 @@ library(ggtree)
 library(ape)
 library(phangorn)
 
-# im going to start by looking at just some restricting snakes
-
-#test this did not really work needed to read in as DMA strings 
-boa =  read.fasta("Project_Data/Boa_c_mt.fasta")
-ball = read.fasta("Project_Data/Python_r_mt.fasta")
-######
-
-#read in with DNAStringSet
-boa2 = readDNAStringSet("./Project_Data/Boa_c_mt.fasta")
-ball2 = readDNAStringSet("./Project_Data/Python_r_mt.fasta")
-#######
-
+#must be DNA stringset
 # loeading in files for an alignment with all of the files in the data foler ##############
 files <- list.files("./Project_Data/", pattern = "*.fasta$", full.names = TRUE)
-test.sec2 = readDNAStringSet(files) ##############################
+snake.mt = readDNAStringSet(files) ##############################
 ######
-
-
-# aligning the just the first two sequences this method did not really work all that well.
-boa = as.character(boa)
-ball = as.character(ball)
-test.sec = c(boa,ball)
-
-test.A = msa(test.sec,"ClustalW", type ="DNA")
-test.A
-write.fasta(test.A, ball, file = "testA.fasta")
-######
-
-# the best test for what im trying to do.
-test.sec1.2 = c(boa2,ball2)
-
-test.A2 = msa(test.sec1.2, "ClustalW")
-saveRDS(test.A2, "./test.A2.RDS")
-
-test.A2
-test.A2 = readRDS("./test.A2.RDS")
-msaPrettyPrint(x = test.A2, output = "pdf", file = "test.A2.pdf")
-# write.fasta(test.A2, file = "testA2.fasta") Does not work
-#######
-# testing trees in phangorn, conver with msaConver
-test.A2phy = msaConvert(test.A2, "phangorn::phyDat")
-
-
-###
-# testing GenomicRanges with just ball and boa to try to find Cytochrome Oxidase I (COI)
-boaCOI = read.fasta("./Project_Data/COI/COI_Boa_c.fasta")
-un.t = union(boaCOI, boa)
-un.t
-un.t2 = intersect(boaCOI, boa)
-?`GenomicRanges-comparison`
-#####
 
 # the first to lines together the 3rth like is just to get it to load back up ############
-alignment = msa(test.sec2, "ClustalW")
+alignment = msa(snake.mt, "ClustalW")
 saveRDS(alignment, "./alignment.RDS")
 alignment
 alignment = readRDS("./alignment.RDS")

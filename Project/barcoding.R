@@ -173,7 +173,7 @@ view.ren = Views(renaln, names = "ren")
 saveRDS(ext.ren,"./Project_Data/ext_COI/ext_ren.RDS")
 saveRDS(view.ren, "./Project_Data/ext_COI/views/view_ren.RDS")
 
-ext.xen = alignedPattern(xenaln)
+ext.xen = ?alignedPattern(xenaln)
 view.xen = Views(xenaln, names = "xen")
 saveRDS(ext.xen,"./Project_Data/ext_COI/ext_xen.RDS")
 saveRDS(view.xen, "./Project_Data/ext_COI/views/view_xen.RDS")

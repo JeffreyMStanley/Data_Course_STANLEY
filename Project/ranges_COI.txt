@@ -1,0 +1,19 @@
+IRanges object with 16 ranges and 0 metadata columns:
+           start       end     width
+       <integer> <integer> <integer>
+   agk      6238      7783      1546
+   amp      5510      7045      1536
+   arc      6405      7950      1546
+   boa      6992      8537      1546
+   cyl      6357      7919      1563
+   did      6220      7765      1546
+   enh      6319      7920      1602
+   igu      5327      6874      1548
+  naja      6221      7822      1602
+   ovo      6411      7956      1546
+   pan      6216      7761      1546
+   ple      5288      6835      1548
+   pyt      6174      7775      1602
+   ram      5105      6664      1560
+   ren      5196      6743      1548
+   xen      7120      8665      1546

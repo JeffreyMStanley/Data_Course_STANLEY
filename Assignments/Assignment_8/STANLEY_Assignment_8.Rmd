@@ -1,0 +1,68 @@
+---
+title: "STANLEY_Assignment_8"
+author: "Stanley"
+date: "April 20, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(modelr)
+library(tidyverse)
+library(aod)
+
+```
+
+### I wanted to see if your undergrad school rank matters in grad school admisions.
+
+####to do this rank needed to be turned into a factor so it is treated catogoricaly and then made a model.
+```{r echo=TRUE}
+df = read.csv("./GradSchool_Admissions.csv")
+class(df$rank)
+df$rank = as.factor(df$rank)
+
+mod1 = glm(admit ~ gpa+gre+rank, data = df, family = "binomial")
+summary(mod1) 
+confint(mod1) #confidence intervals
+confint.default(mod1) #confidence intrervals
+
+```
+
+#### this output shows us the GRE affects the admissions just a little bit with a .002 increase. GPA is a better factor with an increase in 0.804. However, rank is different where each deacreasing rank decreases your possibilies of getting in. 
+
+#### next we need to see if these differences are statisicaly significant with a wald.test
+
+```{r echo=TRUE}
+wald.test(b = coef(mod1), Sigma = vcov(mod1), Terms = 4:6)
+
+
+```
+
+#### from this we can see the school rank is statistically significant. but now I want to see if the difference between rank 2 and 3 as well as 3 and 4.
+
+```{r echo=TRUE}
+l = cbind(0,0,0,1,-1,0)
+wald.test(b = coef(mod1), Sigma = vcov(mod1), L=l)
+
+k = cbind(0,0,0,0,1,-1)
+wald.test(b = coef(mod1), Sigma = vcov(mod1), L=k)
+
+```
+
+#### from this we can see that the between the difference between 2 and 3 is statistically significant while between 3 and 4 it is not.
+
+#### finaly I want to the prediced likelihood for getting in based on school rank with an average GPA and an average GRE score
+```{r echo=TRUE}
+new.df1 = with(df, data.frame(gre = mean(gre), gpa = mean(gpa), rank = factor(1:4)))
+new.df1$rankP <- predict(mod1, newdata = new.df1, type = "response")
+new.df1
+
+
+```
+
+##Conclusion 
+#### based on the results from the moddle your school rank matters most if you go to a top tier undergraduate school and the differences get smaller to the point where its insignificant the between lower tiers. 
+

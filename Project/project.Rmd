@@ -9,6 +9,62 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r include=FALSE}
+library(ShortRead)
+library(tidyverse)
+library(stringr)
+library(msa)
+library(seqinr)
+library(DNABarcodes)
+library(GenomicRanges)
+library(ggtree)
+library(ape)
+library(phangorn)
+library(Biostrings)
+library(BarcodingR)
+library(GenomicAlignments)
+library(geiger)
+library(phylotools)
+
+```
+
+#Identifiing snakes using mitocondrial DNA
+
+
+## Introduction
+### it can be hard to find out what type of snakes can be found in a given area..... there is a non-invase way to test which snakes are found in a location by extracting mtDNA from sheded snake skin and then barcoding the DNA with the COI gene. this obviously needs to be eddited. 
+
+##methods
+### full mitochondial and the Cytochrome c oxidase subunit I (COI) sequncenses were gathered from NCBI for mostly snakes and a few lizards that can be used as outgroups. I aligned the the full mitochondial genome using the msa packedge with the ClustalW and the default settings to build a tree. I alinged the COI and the full mitochonirial sequnce using a local pairwise alignment from the GenomicAlignments package. from these allignments I was able to separate the COI sequence as well as get the ranges in an Irang format. from the separted COI sequence another tree was built. 
+
+
+
+### a snipit of the full alignment. 
+```{r echo=FALSE}
+alignment = readRDS("./alignment.RDS")
+print(alignment) 
+
+
+```
+
+# maybe something about having to allign each one seperatly thing seperatly or an example
+```{r echo=TRUE}
+agk = readDNAStringSet("./Project_Data/Agkistrodon_p_mt.fasta")
+agkCOI = readDNAStringSet("./Project_Data/COI/COI_Agkistrodon_p.fasta")
+
+agkaln = Biostrings::pairwiseAlignment(agkCOI, agk, type = "local")
+
+
+```
+
+##Results
+
 https://cran.r-project.org/web/packages/phangorn/vignettes/Trees.pdf 
 phangorn help
+
+
+
+
+
+
 
