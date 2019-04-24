@@ -59,6 +59,8 @@ agkaln = Biostrings::pairwiseAlignment(agkCOI, agk, type = "local")
 
 ##Results
 
+
+
 https://cran.r-project.org/web/packages/phangorn/vignettes/Trees.pdf 
 phangorn help
 

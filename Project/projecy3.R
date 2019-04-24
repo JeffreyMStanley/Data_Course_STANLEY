@@ -49,15 +49,17 @@ ggplot(bs, aes(x,y)) +
   geom_tiplab()
 
 
-?geom_tiplab
+bs2 = midpoint(bs)
+ggplot(bs2, aes(x,y)) +
+  geom_tree() +
+  theme_tree() +
+  geom_tiplab() +
+  geom_nodepoint() 
 
-ggtree(bs) +
-  geom_tiplab()
+ggsave("./root_full_tree.png", width = 20, height = 12)
 
-ape::write.nexus(bs, file = "./bs_tree.nexus")
-bs2 = ape::read.nexus(file = "./bs_tree.nexus")
-bs3 = consensus(bs, p=1)
-bs3
+bs3 = consensus(bs2, p=1)
+bs3 = midpoint(bs3)
 #######
 
 # building the tree for COI
@@ -85,44 +87,20 @@ title("a)")
 cnet = consensusNet(bs.COI, p = 0.2)
 plot(cnet, "2D", show.edg.label=TRUE)
 title("b)")
+##### plot tree
 
 ggplot(bs.COI, aes(x,y)) +
   geom_tree() +
   theme_tree() +
   geom_tiplab()
 
-####### changing names does not work Im going to do it manualy
-name.check(bs)
-class(bs$tip.label)
-bs$tip.label <- list("Agkistrodon_piscivorus", "Ovophis_okinavensis", "Dinodon_semicarinatus", 
-                     "Pantherophis_slowinskii", "Naja_naja", "Enhydris_plumbea", "Python_regius",
-                     "Xenopeltis_unicolor", "Cylindrophis_ruffus", "Boa_constrictor", "Acrochordus_granulatus",
-                     "Ramphotyphlop_braminus", "Rena_humilis", "Amphisbaena_schmidti", "Varanus_komodoensis",
-                     "Varanus_komodoensis", "Plestiodon_egregius")
-list.org = list("Agkistrodon_piscivorus", "Ovophis_okinavensis", "Dinodon_semicarinatus", 
-     "Pantherophis_slowinskii", "Naja_naja", "Enhydris_plumbea", "Python_regius",
-     "Xenopeltis_unicolor", "Cylindrophis_ruffus", "Boa_constrictor", "Acrochordus_granulatus",
-     "Ramphotyphlop_braminus", "Rena_humilis", "Amphisbaena_schmidti", "Varanus_komodoensis",
-     "Varanus_komodoensis", "Plestiodon_egregius")
-bs$tip.label -> bs.tips
-df = data.frame(l1 = bs.tips, l2 = list.org)
+bs.COI2 = midpoint(bs.COI)
 
-bs.tips = list.org
-ggtree(bs) %<+% geom_tiplab(label=l2)
-class(list.org)
+ggplot(bs.COI2, aes(x,y)) +
+  geom_tree() +
+  theme_tree() +
+  geom_tiplab()
 
-org = c("Agkistrodon_piscivorus", "Ovophis_okinavensis", "Dinodon_semicarinatus", 
-              "Pantherophis_slowinskii", "Naja_naja", "Enhydris_plumbea", "Python_regius",
-              "Xenopeltis_unicolor", "Cylindrophis_ruffus", "Boa_constrictor", "Acrochordus_granulatus",
-              "Ramphotyphlop_braminus", "Rena_humilis", "Amphisbaena_schmidti", "Varanus_komodoensis",
-              "Varanus_komodoensis", "Plestiodon_egregius")
-class(org)
-list.org2 = as.list(org)
-as.phylo(list.org)
-bs$tip.label <- list.org
-
-bs.tips = bs$tip.label
-bs$tip.label = bs.tips
 ######
 
 
