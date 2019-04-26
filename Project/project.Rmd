@@ -28,18 +28,19 @@ library(phylotools)
 
 ```
 
-#Identifiing snakes using mitocondrial DNA
+#Identifing Snakes Using Mitochondrial DNA
 
 
 ## Introduction
-### it can be hard to find out what type of snakes are found in a given area to test for biodiversity and to identify unknown species. It is hard to extract tissue or blood samples from snakes without harming them to do further molecular analysis. luckly there is a non-invase method to get samples for molecular analysis by extracting mitochondrial DNA from sheded snake skin. Cytochrome c oxidase subunnit I (COI) is a good well conserved and can be used for barcoding an unknown sample that was found in the field. 
+### It can be hard to find out what type of snakes are found in a given area to test for biodiversity, and to identify unknown species. It is also, hard to extract tissue or blood samples from snakes without harming them to do further molecular analysis. Luckily, there is a non-inavise method to get samples for molecular analysis by extracting mitochondrial DNA from shedded snake skin. Cytochrome c oxidase subunit I (COI) is a well conserved and is frequently used for barcoding to help identify species. 
 
-##methods
-### full mitochondial and the Cytochrome c oxidase subunit I (COI) sequncenses were gathered from NCBI for mostly snakes and a few lizards that can be used as outgroups. I aligned the the full mitochondial genome using the msa packedge with the ClustalW and the default settings to build a tree. I alinged the COI and the full mitochonirial sequnce using a local pairwise alignment from the GenomicAlignments package. from these allignments I was able to separate the COI sequence as well as get the ranges in an Irang format. from the separted COI sequence another tree was built. 
+##Methods
+### full mitochondial and COI sequncenses were gathered from NCBI for mostly snakes and a few lizards that can be used as outgroups. 
+### I aligned the the full mitochondial genome using the msa packedge with the ClustalW and the default settings to build a tree. I alinged the COI and the full mitochonirial sequnce using a local pairwise alignment from the GenomicAlignments package. from these allignments I was able to separate the COI sequence as well as get the ranges in an Irang format. from the separted COI sequence another tree was built. ## this will be deleted
 
 
 
-### I first alligned the mitochondrial genomes and make a phylogenetic tree to test for relatedness.
+### I first alligned the mitochondrial genomes using the ClusalW method to phylogenetic tree to test for relatedness with the msa package. I then used the phangorn and ape packeges to build the maximum liklyhood trees with 100 bootstraps. 
 ```{r echo=FALSE}
 alignment = readRDS("./alignment.RDS")
 print(alignment) 
@@ -47,7 +48,7 @@ print(alignment)
 ```
 ![full mtDNA sequence](./root_full_tree.png)
 
-### I then had to a local alignment for each COI gene with the full mitochondrial sequence individualy for each species. 
+### I then had to a local alignment for each COI gene with the full mitochondrial sequence seperatly for each species with the GenomicAlignments package. 
 ```{r echo=TRUE}
 # an example with just one species.
 
@@ -60,7 +61,7 @@ agkaln = Biostrings::pairwiseAlignment(agkCOI, agk, type = "local")
 ```
 
 
-### from here I extracted the sequence and separated the views and then I had to bind them all seperatly the COI sequence and the views (gets the start, end, and width of the aligned sequence). 
+### from here I extracted the alligned part of the sequence and separated the views and then I had to bind them all seperatly the COI sequence and the views (gets the start, end, and width of the aligned sequence). 
 ```{r echo=TRUE}
 # an example with just one of the options
 
