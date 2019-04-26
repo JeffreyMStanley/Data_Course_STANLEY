@@ -32,23 +32,25 @@ library(phylotools)
 
 
 ## Introduction
-### it can be hard to find out what type of snakes can be found in a given area..... there is a non-invase way to test which snakes are found in a location by extracting mtDNA from sheded snake skin and then barcoding the DNA with the COI gene. this obviously needs to be eddited. 
+### it can be hard to find out what type of snakes are found in a given area to test for biodiversity and to identify unknown species. It is hard to extract tissue or blood samples from snakes without harming them to do further molecular analysis. luckly there is a non-invase method to get samples for molecular analysis by extracting mitochondrial DNA from sheded snake skin. Cytochrome c oxidase subunnit I (COI) is a good well conserved and can be used for barcoding an unknown sample that was found in the field. 
 
 ##methods
 ### full mitochondial and the Cytochrome c oxidase subunit I (COI) sequncenses were gathered from NCBI for mostly snakes and a few lizards that can be used as outgroups. I aligned the the full mitochondial genome using the msa packedge with the ClustalW and the default settings to build a tree. I alinged the COI and the full mitochonirial sequnce using a local pairwise alignment from the GenomicAlignments package. from these allignments I was able to separate the COI sequence as well as get the ranges in an Irang format. from the separted COI sequence another tree was built. 
 
 
 
-### a snipit of the full alignment. 
+### I first alligned the mitochondrial genomes and make a phylogenetic tree to test for relatedness.
 ```{r echo=FALSE}
 alignment = readRDS("./alignment.RDS")
 print(alignment) 
 
-
 ```
+![full mtDNA sequence](./root_full_tree.png)
 
-# maybe something about having to allign each one seperatly thing seperatly or an example
+### I then had to a local alignment for each COI gene with the full mitochondrial sequence individualy for each species. 
 ```{r echo=TRUE}
+# an example with just one species.
+
 agk = readDNAStringSet("./Project_Data/Agkistrodon_p_mt.fasta")
 agkCOI = readDNAStringSet("./Project_Data/COI/COI_Agkistrodon_p.fasta")
 
@@ -57,10 +59,42 @@ agkaln = Biostrings::pairwiseAlignment(agkCOI, agk, type = "local")
 
 ```
 
+
+### from here I extracted the sequence and separated the views and then I had to bind them all seperatly the COI sequence and the views (gets the start, end, and width of the aligned sequence). 
+```{r echo=TRUE}
+# an example with just one of the options
+
+ext.agk = alignedPattern(agkaln)
+view.agk = Views(agkaln, names = "agk")
+print(ext.agk)
+print(view.agk)
+# after getting the extracted COI sequence I binded them all together with C()
+
+```
+
+### I then separated just the ranges from views
+```{r echo=TRUE}
+# and example from one of the species 
+agk.r = ranges(view.agk)
+print(agk.r)
+# I binded them all together with c()
+```
+
 ##Results
+### From the extraced sequences I aligned the COI sequences and the and made another tree.
+### I also viewd all the ranges and compared them so you can see the the ranges are different.
+```{r echo=FALSE}
+ranges.COI = readRDS("./ranges_COI.RDS")
+options(showTailLines=Inf)
+print(ranges.COI)
+```
+![COI sequence](./full_COI_tree.png)
 
 
+##conclusion
+### by doing a local alignmnet with the COI gene with a referance mtDNA sequence from NCBI and extract the ranges you should be able to identify an unknown snake from mtDNA extracted from snake skin.
 
+#refererences.
 https://cran.r-project.org/web/packages/phangorn/vignettes/Trees.pdf 
 phangorn help
 

@@ -173,7 +173,7 @@ view.ren = Views(renaln, names = "ren")
 saveRDS(ext.ren,"./Project_Data/ext_COI/ext_ren.RDS")
 saveRDS(view.ren, "./Project_Data/ext_COI/views/view_ren.RDS")
 
-ext.xen = ?alignedPattern(xenaln)
+ext.xen = alignedPattern(xenaln)
 view.xen = Views(xenaln, names = "xen")
 saveRDS(ext.xen,"./Project_Data/ext_COI/ext_xen.RDS")
 saveRDS(view.xen, "./Project_Data/ext_COI/views/view_xen.RDS")
@@ -207,3 +207,5 @@ xen.r = ranges(view.xen)
 ranges.COI = c(agk.r,amp.r,arc.r,boa.r,cyl.r,did.r,enh.r,igu.r,naja.r,ovo.r,pan.r,ple.r,pyt.r,ram.r,ren.r,xen.r)
 ranges.COI
 saveRDS(ranges.COI, "./ranges_COI.RDS")
+#####
+

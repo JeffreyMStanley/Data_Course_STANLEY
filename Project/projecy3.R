@@ -59,7 +59,7 @@ ggplot(bs2, aes(x,y)) +
 ggsave("./root_full_tree.png", width = 20, height = 12)
 
 bs3 = consensus(bs2, p=1)
-bs3 = midpoint(bs3)
+
 #######
 
 # building the tree for COI
@@ -101,6 +101,7 @@ ggplot(bs.COI2, aes(x,y)) +
   theme_tree() +
   geom_tiplab()
 
+ggsave("./full_COI_tree.png", width = 20, height = 12)
 ######
 
 
