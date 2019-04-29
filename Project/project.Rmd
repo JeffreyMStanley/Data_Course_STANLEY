@@ -1,5 +1,5 @@
 ---
-title: "project"
+title: "Project"
 author: "Stanley"
 date: "April 4, 2019"
 output: html_document
@@ -32,15 +32,13 @@ library(phylotools)
 
 
 ## Introduction
-### It can be hard to find out what type of snakes are found in a given area to test for biodiversity, and to identify unknown species. It is also, hard to extract tissue or blood samples from snakes without harming them to do further molecular analysis. Luckily, there is a non-inavise method to get samples for molecular analysis by extracting mitochondrial DNA from shedded snake skin. Cytochrome c oxidase subunit I (COI) is a well conserved and is frequently used for barcoding to help identify species. 
+#### It can be hard to distcover what type of snakes are found in a given area to test for biodiversity, and to identify unknown species. It is also hard to extract tissue or blood samples from snakes without harming them inorder to do molecular analysis. Fortunately, there is a non-invaive method to get samples for molecular analysis by extracting mitochondrial DNA (mtDNA) from shedded snake skin. mtDNA is used instread of  Cytochrome c oxidase subunit I (COI) is a well conserved gene and is frequently used for barcoding to help identify species. 
 
 ##Methods
-### full mitochondial and COI sequncenses were gathered from NCBI for mostly snakes and a few lizards that can be used as outgroups. 
-### I aligned the the full mitochondial genome using the msa packedge with the ClustalW and the default settings to build a tree. I alinged the COI and the full mitochonirial sequnce using a local pairwise alignment from the GenomicAlignments package. from these allignments I was able to separate the COI sequence as well as get the ranges in an Irang format. from the separted COI sequence another tree was built. ## this will be deleted
+#### Full mitochondrial and COI DNA sequence were gathered from NCBI for 14 snakes and a 4 lizards that can be used as an outgroup for building phylogenetic trees and to see if this works for lizards to. Below is a what I did to achieve what I did
 
 
-
-### I first alligned the mitochondrial genomes using the ClusalW method to phylogenetic tree to test for relatedness with the msa package. I then used the phangorn and ape packeges to build the maximum liklyhood trees with 100 bootstraps. 
+#### I first aligned the mitochondrial genomes using the ClustalW method to make a phylogenetic tree in order to test for relatedness with the msa package. I then used the phangorn and ape packages to build the maximum liklihood trees with 100 bootstraps. 
 ```{r echo=FALSE}
 alignment = readRDS("./alignment.RDS")
 print(alignment) 
@@ -48,7 +46,9 @@ print(alignment)
 ```
 ![full mtDNA sequence](./root_full_tree.png)
 
-### I then had to a local alignment for each COI gene with the full mitochondrial sequence seperatly for each species with the GenomicAlignments package. 
+
+
+#### I then had to preform a local alignment for each COI gene with the full mitochondrial sequence separately for each species with the GenomicAlignments package. 
 ```{r echo=TRUE}
 # an example with just one species.
 
@@ -61,7 +61,8 @@ agkaln = Biostrings::pairwiseAlignment(agkCOI, agk, type = "local")
 ```
 
 
-### from here I extracted the alligned part of the sequence and separated the views and then I had to bind them all seperatly the COI sequence and the views (gets the start, end, and width of the aligned sequence). 
+
+#### From here I extracted the aligned part of the sequence and separated the views. Next I had to bind the extracted sequences. 
 ```{r echo=TRUE}
 # an example with just one of the options
 
@@ -69,21 +70,23 @@ ext.agk = alignedPattern(agkaln)
 view.agk = Views(agkaln, names = "agk")
 print(ext.agk)
 print(view.agk)
-# after getting the extracted COI sequence I binded them all together with C()
+# after getting the extracted COI sequence I bound them all together with c()
 
 ```
 
-### I then separated just the ranges from views
+
+
+#### I then separated just the ranges from views. 
 ```{r echo=TRUE}
-# and example from one of the species 
+# an example from one of the species 
 agk.r = ranges(view.agk)
 print(agk.r)
-# I binded them all together with c()
+# I bound them all together with c()
 ```
 
 ##Results
-### From the extraced sequences I aligned the COI sequences and the and made another tree.
-### I also viewd all the ranges and compared them so you can see the the ranges are different.
+#### From the extracted sequences I aligned the COI sequences and the made another tree with the defalt settings and 100 bootstraps.
+#### I also viewed all the ranges and compared them so you can see the ranges are different.
 ```{r echo=FALSE}
 ranges.COI = readRDS("./ranges_COI.RDS")
 options(showTailLines=Inf)
@@ -92,10 +95,11 @@ print(ranges.COI)
 ![COI sequence](./full_COI_tree.png)
 
 
-##conclusion
-### by doing a local alignmnet with the COI gene with a referance mtDNA sequence from NCBI and extract the ranges you should be able to identify an unknown snake from mtDNA extracted from snake skin.
+##Conclusion
+#### By doing a local alignmnet with of the COI gene with a reference mtDNA sequence from NCBI and extracting the ranges, you should be able to identify an unknown snake from mtDNA extracted from the snake skin.
 
-#refererences.
+
+#References
 https://cran.r-project.org/web/packages/phangorn/vignettes/Trees.pdf 
 phangorn help
 
