@@ -36,7 +36,7 @@ library(phylotools)
 
 
 ##Methods
-#### Full mitochondrial and COI DNA sequences were gathered from NCBI for 14 snakes, and four lizards that are used as outgroups for phylogenetic analysis. I also wanted to see if this methodology worked for lizards as well. 
+#### Full mitochondrial and COI DNA sequences were gathered from NCBI for 14 snakes, and four lizards that were used as outgroups for phylogenetic analysis. I  wanted to see if this methodology worked for lizards as well. 
 
 #### I first aligned the mitochondrial genomes using the ClustalW method to make a phylogenetic tree in order to test for relatedness with the msa package. I then used the phangorn and ape packages to build the maximum likelihood trees with 100 bootstraps. 
 ```{r echo=FALSE}
@@ -96,7 +96,7 @@ print(ranges.COI)
 
 
 ##Conclusion
-#### By doing a local alignment with just the COI genes with a reference mtDNA sequence from NCBI and by extracting the ranges, you should be able to identify an unknown snake or lizard from mtDNA extracted from their sheded skin.
+#### By doing a local alignment with just the COI genes with a reference mtDNA sequence from NCBI and by extracting the ranges, you should be able to identify an unknown snake or lizard from mtDNA extracted from their shedded skin.
 
 
 #References
