@@ -99,9 +99,9 @@ print(ranges.COI)
 #### By doing a local alignment with just the COI genes with a reference mtDNA sequence from NCBI and by extracting the ranges, you should be able to identify an unknown snake or lizard from mtDNA extracted from their shedded skin.
 
 
-#References
-https://cran.r-project.org/web/packages/phangorn/vignettes/Trees.pdf 
-phangorn help
+##References
+###Yan, Jie et al. “Evolution of the mitochondrial genome in snakes: gene rearrangements and phylogenetic relationships.” BMC genomics vol. 9 569. 28 Nov. 2008, doi:10.1186/1471-2164-9-569
+
 
 
 
